@@ -3,6 +3,7 @@ import Triangle from "./Triangle";
 import {FederatedPointerEvent} from "@pixi/events";
 import Circle from "./Circle";
 import TimerFijo from "./TimerFijo";
+import Rect from "./Rect";
 
 export default class Canvas {
   private app: Application;
@@ -37,10 +38,19 @@ export default class Canvas {
     const triangulo: Triangle = new Triangle(this.app.ticker, width /2 , height / 2);
     this.app.stage.addChild(triangulo);
 
-    const timer: TimerFijo = new TimerFijo(() => {
+    this.app.stage.addChild(new Rect(this.app.ticker, 80,100, this.random(0,1400), this.random(0,600)));
+
+    const timerRect: TimerFijo = new TimerFijo(() => {
+      this.app.stage.addChild(new Rect(this.app.ticker, 80,100, this.random(0,1400), -100));
+    }, this.random(1000, 3000))
+
+
+    const timerCircle: TimerFijo = new TimerFijo(() => {
       this.app.stage.addChild(new Circle(this.app.ticker,this.random(0,1500),this.random(0,900)));
-    }, this.random(0,5000)
-    )}
+    }, this.random(0,5000))
+  }
+
+
 
   protected capturarPosicionesMouse(event: FederatedPointerEvent){
     this.mouseX = Math.round(event.data.global.x);
@@ -48,4 +58,5 @@ export default class Canvas {
 
     //console.log(this.mouseX + " " + "y" + " " +  this.mouseY);
   }
+
 }
