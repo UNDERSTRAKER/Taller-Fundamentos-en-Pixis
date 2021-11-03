@@ -1,5 +1,5 @@
 import Canvas from './canvas';
 
 window.onload = function () {
-  new Canvas(800, 600, 0x0FEFEF);
+  new Canvas(1500, 900, 0xCDCDCD);
 }
