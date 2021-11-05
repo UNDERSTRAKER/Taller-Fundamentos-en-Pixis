@@ -1,5 +1,6 @@
 import {Graphics, Ticker} from "pixi.js";
 import TimerFijo from "./TimerFijo";
+import BotonCircle from "./BotonCircle";
 
 
 export default class Circle extends Graphics {
@@ -8,6 +9,8 @@ export default class Circle extends Graphics {
   protected crecer: boolean;
   protected color: number;
   protected ticker: Ticker;
+
+
 
 
   constructor(ticker: Ticker, x: number, y: number) {

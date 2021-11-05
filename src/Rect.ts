@@ -1,17 +1,11 @@
 import {Graphics, Ticker} from "pixi.js";
+import MyMath from "./Utilidades/MyMath";
 
 export default class Rect extends Graphics{
   protected rectWidth: number;
   protected rectHeight: number;
   protected parado: boolean = true;
 
-  public random(min: number, max: number): number {
-    const intervalo: number = max - min;
-    const  valor: number = Math.floor(Math.random() * intervalo);
-    const valorFinal: number = valor + min;
-    return valorFinal;
-
-  }
 
 
 
@@ -23,7 +17,7 @@ export default class Rect extends Graphics{
     this.rectHeight = height;
     this.interactive = true;
     this.buttonMode = true;
-    //this.on('click', this.vibrar);
+    this.on('click', this.vibrar);
     //this.on('pointerdown', this.pararVibrar);
 
     ticker.add(() => {
@@ -45,14 +39,18 @@ export default class Rect extends Graphics{
       this.y += 1;
     } else {
       this.y -= 1;
-      this.y += this.random (-1,2);
-      this.x += this.random (-1,2);
+      this.y += MyMath.random (-1,2);
+      this.x += MyMath.random (-1,2);
     }}
     public reiniciar(){
       this.y += 1;
       if(this.y > 1500){
         this.y = -100;
       }
+    }
+
+    protected vibrar(): void {
+   this.parado = !this.parado;
     }
 
 }
